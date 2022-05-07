@@ -1,0 +1,96 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local Label = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+local TrashTalk = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.CoreGui
+
+Main.Name = "Main"
+Main.Parent = ScreenGui
+Main.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
+Main.Position = UDim2.new(0.26068604, 0, 0.287116528, 0)
+Main.Size = UDim2.new(0, 631, 0, 346)
+Main.Active = true
+Main.Draggable = true
+
+Label.Name = "Label"
+Label.Parent = Main
+Label.BackgroundColor3 = Color3.fromRGB(200, 0, 3)
+Label.Size = UDim2.new(0, 631, 0, 50)
+Label.Font = Enum.Font.GothamBlack
+Label.Text = "Unity GUI | Made by RudraV2#6468"
+Label.TextColor3 = Color3.fromRGB(0, 0, 0)
+Label.TextSize = 24.000
+Label.TextWrapped = true
+
+TextButton.Parent = Main
+TextButton.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+TextButton.Position = UDim2.new(0.026941359, 0, 0.199421972, 0)
+TextButton.Size = UDim2.new(0, 247, 0, 88)
+TextButton.Font = Enum.Font.GothamBlack
+TextButton.Text = "IY GUI"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 40.000
+TextButton.TextWrapped = true
+TextButton.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+TrashTalk.Name = "Trash Talk"
+TrashTalk.Parent = Main
+TrashTalk.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+TrashTalk.Position = UDim2.new(0.560366154, 0, 0.197188661, 0)
+TrashTalk.Size = UDim2.new(0, 247, 0, 88)
+TrashTalk.Font = Enum.Font.GothamBlack
+TrashTalk.Text = "Trash Talk  (M)"
+TrashTalk.TextColor3 = Color3.fromRGB(0, 0, 0)
+TrashTalk.TextSize = 40.000
+TrashTalk.TextWrapped = true
+TrashTalk.MouseButton1Down:connect(function()
+	local key = "m" -- the toxic key
+	_G.Toxic = false
+
+	local words = 
+		{
+			"How do I become as bad as you?",
+			"Easy",
+			"Loser.",
+			"Laugh out loud",
+			"Do you need to go specsavers?",
+			"Get glasses.",
+			"Trash",
+			"Bad",
+			"😂😂😂",
+			"Horrible",
+			"Bozo",
+			"My grandma plays better than you",
+			"Are you trying?",
+			"seed",
+			"Child",
+			"Dog water",
+			"Garbage",
+			"Litter",
+			"Spxzced"
+		}
+
+	local player = game:GetService("Players").LocalPlayer
+	local mouse = player:GetMouse()
+
+	local event = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest")
+
+	mouse.KeyDown:Connect(function(keybind)
+		if _G.Toxic == false then
+			if keybind == key then
+				event:FireServer(words[math.random(#words)], "All")
+			end
+		end
+	end)
+end)
